@@ -14,8 +14,6 @@ header {
 }
 
 #api_status {
-        display: flex;
-        align-items: center;
         float: right;
         vertical-align: middle;
         width: 40px;
