@@ -20,8 +20,9 @@ header {
         border-radius: 50%;
         background-color: #cccccc;
         margin-right: 30px;
-        position: relative;
-        vertical-align: middle;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 }
 
 .available {
