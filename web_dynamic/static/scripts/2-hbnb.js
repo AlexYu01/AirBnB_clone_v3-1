@@ -17,8 +17,7 @@ $(document).ready(function () {
     'type': 'GET',
     'success': function (data) {
       if (data.status === 'OK') {
-        $('#api_status').css('background-color', '');
-        $('#api_status').addClass('available');
+        $('div#api_status').addClass('available');
       }
     }
   });
