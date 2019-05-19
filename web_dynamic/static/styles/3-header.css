@@ -14,17 +14,6 @@ header {
 	border-bottom: 1px solid #CCCCCC;
 }
 
-#api_status {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #cccccc;
-        right: 30px;
-        margin-top: -25px;
-        position: absolute;
-        top: 50%;
-}
-
 .available {
         background-color: #ff545f;
 }
