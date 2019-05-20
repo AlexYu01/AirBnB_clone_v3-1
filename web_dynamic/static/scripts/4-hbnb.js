@@ -21,11 +21,11 @@ $(document).ready(function () {
       }
     }
   });
-  function sendData () {
+  function sendData (a) {
     $.ajax({
       url: 'http://0.0.0.0:5001/api/v1/places_search/',
       type: 'POST',
-      data: '{}',
+      data: JSON.stringify(a),
       dataType: 'json',
       contentType: 'application/json',
       success: function (data) {
@@ -41,6 +41,7 @@ $(document).ready(function () {
             return (1);
           }
         });
+        $('section.places').empty();
         for (i = 0, dataLen = data.length; i < dataLen; i++) {
           pDict = data[i];
           let place = $('<article></article>');
@@ -70,13 +71,11 @@ $(document).ready(function () {
       }
     });
   }
+  sendData({});
   $('button').click(function () {
-    let amens = [];
-    $('.amenities.popover').each(function () {
-      amens.push($(this).attr('data-id'));
-    });
-    amen = {};
+    let amens = Object.keys(chosenAmens);
+    let amen = {};
     amen['amenities'] = amens;
     sendData(amen);
-  })
+  });
 });
