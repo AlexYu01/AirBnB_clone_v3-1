@@ -4,6 +4,7 @@
  */
 
 header {
+        position: relative;
 	background-color: #FFFFFF;
 	background-image: url("../images/logo.png");
 	background-repeat: no-repeat;
@@ -11,4 +12,18 @@ header {
 	height: 70px;
 	width: 100%;
 	border-bottom: 1px solid #CCCCCC;
+}
+#api_status {
+	width:40px;
+	height:40px;
+	border-radius:50%;
+	background-color:#cccccc;
+	right:30px;
+	margin-top:-20px;
+	position:absolute;
+	top:50%;
+}
+
+#api_status.available {
+        background-color: #ff545f;
 }
