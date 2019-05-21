@@ -1,6 +1,5 @@
 let chosenAmens = {};
 $(document).ready(function () {
-
   function fillPlaces (filter) {
     $.when($.ajax({
       url: 'http://0.0.0.0:5001/api/v1/places_search/',
@@ -25,8 +24,7 @@ $(document).ready(function () {
   }
 
   function setPlaces (places) {
-    let i;
-    let pDict;
+    let i, len, pDict;
     $('section.places').empty();
     for (i = 0, len = places.length; i < len; i++) {
       pDict = places[i];
@@ -51,15 +49,16 @@ $(document).ready(function () {
 
       let desc = $('<div class="description"></div>').text(pDict.description);
 
-      place.append(title, info, desc);
+      let reviews = $('<div class="reviews"></div>');
+      reviews.append($('<h2>Reviews</h2>').append($('<span name="boo" data-id="' + pDict.id + '"> show</span>')));
+
+      place.append(title, info, desc, reviews);
       $('SECTION.places').append(place);
-      }
+    }
   }
 
-
-
   $('div.amenities ul.popover li input').click(function () {
-    if($(this).is(':checked')) {
+    if ($(this).is(':checked')) {
       chosenAmens[$(this).attr('data-id')] = $(this).attr('data-name');
     } else {
       delete chosenAmens[$(this).attr('data-id')];
@@ -75,6 +74,42 @@ $(document).ready(function () {
     let amen = {};
     amen['amenities'] = Object.keys(chosenAmens);
     setPlaces(fillPlaces(amen));
+  });
+
+  $('section.places').on('click', '.reviews h2 span', function () {
+    let reviews = $(this).parent().parent();
+    if ($(this).text() === ' show') {
+      let i;
+      let len;
+      let ul = $('<ul></ul>');
+      $.ajax({
+        url: 'http://0.0.0.0:5001/api/v1/places/' + $(this).attr('data-id') + '/reviews',
+        type: 'GET',
+        success: function (data) {
+          for (i = 0, len = data.length; i < len; i++) {
+            let username;
+            let review = $('<li></li>');
+            let place = data[i];
+            $.when($.ajax({
+              url: 'http://0.0.0.0:5001/api/v1/users/' + data[i].user_id,
+              type: 'GET',
+              success: function (udata) {
+                username = udata.first_name + ' ' + udata.last_name;
+              }
+            })).done(function () {
+              review.append($('<h3></h3>').text('From ' + username));
+              review.append($('<p></p>').text(place.text));
+              ul.append(review);
+            });
+          }
+          reviews.append(ul);
+        }
+      });
+      $(this).text(' hide');
+    } else {
+      $('.reviews ul').remove();
+      $(this).text(' show');
+    }
   });
 
   $.ajax({
