@@ -227,7 +227,7 @@ github repo
 * Carrie Ybay, [hicarrie](https://github.com/hicarrie) | [@hicarrie_](https://twitter.com/hicarrie_)
 * Jared Heck, [jarehec](https://github.com/jarehec) | [@jarehec](https://twitter.com/jarehec)
 * Alex Yu, [alexyu01](https://github.com/AlexYu01) | [@Tyu1Yu](https://twitter.com/Tyu1Yu)
-* Andrew Lindburg [atlindburg](https://github.com/atlindburg) | [@andrewlindburg](https://twitter.com/andrewlindburg)
+* Andrew Lindburg, [atlindburg](https://github.com/atlindburg) | [@andrewlindburg](https://twitter.com/andrewlindburg)
 ## License
 
 MIT License
